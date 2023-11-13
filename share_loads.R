@@ -1,0 +1,20 @@
+library(shiny)
+library(shinydashboard)
+library(shinycssloaders)
+library(shinythemes)
+library(shinyWidgets)
+library(tidyverse)
+library(toastui)
+library(highcharter)
+library(readxl)
+library(plotly)
+library(RMySQL)
+library(shinyjs)
+library(DT)
+library(formattable)
+library(zoo)
+library(leaflet)
+
+listing <- read_xlsx("./data/PRADA Publisher Check 202311.xlsx", sheet = 2)
+listing %>% 
+  select(-c(URL,Comment)) -> listing

@@ -1,0 +1,20 @@
+---
+title: "test"
+author: "Su Xu"
+date: "2023-11-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(RMySQL)
+library(readxl)
+library(tidyverse)
+```
+
+```{r}
+listing <- read_xlsx("./data/PRADA Publisher Check 202311.xlsx", sheet = 2)
+listing %>% 
+  select(-c(URL,Comment)) -> listing
+```
+
