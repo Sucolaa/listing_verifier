@@ -10,6 +10,23 @@ dashboardPage(
                  style = "font-weight:bold;"),
     disable = FALSE
   ),
-  dashboardSidebar(),
-  dashboardBody()
+  dashboardSidebar(
+    disable = TRUE,
+    sidebarMenu(
+      id = "tabs",
+      menuSubItem(text = "original", tabName = "original"),
+      menuSubItem(text = "tencent", tabName = "tencent")
+    )
+  ),
+  dashboardBody(
+    tabItems(
+      tabItem(
+        tabName = "original", titlePanel(title = "A"),
+        actionButton("btn1", "Go to tab tencent" )
+      ),
+      tabItem(
+        tabName = "tencent", titlePanel(title = "B")
+      )
+    )
+  )
 )
