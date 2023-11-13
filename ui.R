@@ -1,8 +1,15 @@
+library(shiny)
 source("share_loads.R")
-walk(list.files("ui_scripts", full.names = TRUE), ~ source(.x))
+walk(list.files("uis", full.names = TRUE), ~ source(.x))
+walk(list.files("scripts", full.names = TRUE), ~ source(.x))
 
 dashboardPage(
-  dashboardHeader(),
+  skin = "black",
+  dashboardHeader(
+    title = span("Listing Verifier",
+                 style = "font-weight:bold;"),
+    disable = FALSE
+  ),
   dashboardSidebar(),
   dashboardBody()
 )
