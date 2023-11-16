@@ -15,6 +15,6 @@ library(formattable)
 library(zoo)
 library(leaflet)
 
-listing <- read_xlsx("./data/PRADA Publisher Check 202311.xlsx", sheet = 2)
+listing <- read_xlsx("C:/Users/YexSys/Desktop/upgrade/listing_verifier/data/PRADA Publisher Check 202311.xlsx", sheet = 2)
 listing %>% 
   select(-c(URL,Comment)) -> listing

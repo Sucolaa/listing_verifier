@@ -18,3 +18,21 @@ listing %>%
   select(-c(URL,Comment)) -> listing
 ```
 
+```{r}
+listing %>% 
+  filter(Name == FALSE | Address == FALSE | Phone == FALSE) %>% 
+  mutate(平台 = toupper(平台)) %>% 
+  head(1)
+```
+
+```{r}
+rbind(
+  c(listing$名称[1],listing$地址[1],listing$电话[1],listing$区[1],listing$市[1],listing$省[1]),
+  c(listing$平台名称[1],listing$平台地址[1],listing$平台电话[1],listing$平台区[1],listing$平台市[1],listing$平台省[1]),
+  c(listing$Name[1],listing$Address[1],listing$Phone[1],TRUE,TRUE,TRUE)
+) %>% 
+  as.data.frame() -> recheck_df
+
+colnames(recheck_df) <- c("名称对比","地址对比","电话对比","区对比","市对比","省对比")
+```
+

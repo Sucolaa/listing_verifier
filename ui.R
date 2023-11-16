@@ -6,27 +6,20 @@ walk(list.files("scripts", full.names = TRUE), ~ source(.x))
 dashboardPage(
   skin = "black",
   dashboardHeader(
-    title = span("Listing Verifier",
+    title = span("PROTOTYPES",
                  style = "font-weight:bold;"),
     disable = FALSE
   ),
-  dashboardSidebar(
-    disable = TRUE,
+  dashboardSidebar( 
     sidebarMenu(
-      id = "tabs",
-      menuSubItem(text = "original", tabName = "original"),
-      menuSubItem(text = "tencent", tabName = "tencent")
+      mission_ask_menu,
+      manual_check_menu
     )
   ),
   dashboardBody(
     tabItems(
-      tabItem(
-        tabName = "original", titlePanel(title = "A"),
-        actionButton("btn1", "Go to tab tencent" )
-      ),
-      tabItem(
-        tabName = "tencent", titlePanel(title = "B")
-      )
+      mission_ask_tab,
+      manual_check_tab
     )
   )
 )
