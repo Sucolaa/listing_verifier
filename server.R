@@ -84,24 +84,28 @@ function(input, output, session) {
     return (recheck_df)
   }
   
-  output$first <- renderTable({
-    the_recheck_df(the_row = 1)
+  # output$first <- renderTable({
+  #   the_recheck_df(the_row = 1)
+  # })
+  
+  output$first <- renderDT({
+    datatable(the_recheck_df(the_row = 1), editable = TRUE, options = list(paging = FALSE, searching = FALSE, info = FALSE),rownames = FALSE)
   })
   
-  output$second <- renderTable({
-    the_recheck_df(the_row = 2)
+  output$second <- renderDT({
+    datatable(the_recheck_df(the_row = 2), editable = TRUE, options = list(paging = FALSE, searching = FALSE, info = FALSE),rownames = FALSE)
   })
   
-  output$third <- renderTable({
-    the_recheck_df(the_row = 3)
+  output$third <- renderDT({
+    datatable(the_recheck_df(the_row = 3), editable = TRUE, options = list(paging = FALSE, searching = FALSE, info = FALSE),rownames = FALSE)
   })
   
-  output$fourth <- renderTable({
-    the_recheck_df(the_row = 4)
+  output$fourth <- renderDT({
+    datatable(the_recheck_df(the_row = 4), editable = TRUE, options = list(paging = FALSE, searching = FALSE, info = FALSE),rownames = FALSE)
   })
   
-  output$five <- renderTable({
-    the_recheck_df(the_row = 5)
+  output$five <- renderDT({
+    datatable(the_recheck_df(the_row = 5), editable = TRUE, options = list(paging = FALSE, searching = FALSE, info = FALSE),rownames = FALSE)
   })
   
   observeEvent(

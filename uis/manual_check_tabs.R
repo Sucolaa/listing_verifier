@@ -3,6 +3,11 @@ actionButton(
   label = "全部正确"
 ) -> full_change_button
 
+actionButton(
+  inputId = "pid_change",
+  label = "PID修改"
+) -> pid_change_button
+
 box(
   HTML('<p style="color: red;">异常</p>'),
   br(),
@@ -14,13 +19,27 @@ box(
   box(
     width = 4,
     HTML('<p style="color: blue; font-weight: bold; font-size: 18px;">TENCENT</p>'),
-    br(),
     p("1 / 3"),
-    full_change_button
+  column(
+    12,
+    column(
+      3,
+      HTML('<p style="color: black; font-weight: bold; font-size: 16px;">YID:</p>'),
+      paste0(listing$YSID[1]),
+    ),
+    column(
+      3,
+      HTML('<p style="color: black; font-weight: bold; font-size: 16px;">PID:</p>'),
+      paste0(listing$平台ID[1]),
+    ),
+    column(3,full_change_button),
+    column(3,pid_change_button)
+    )
   ),
   box(
     width = 8,
-    tableOutput("first")
+    # tableOutput("first")
+    DTOutput("first")
   )
 ) -> success_box_1
 
@@ -29,13 +48,26 @@ box(
   box(
     width = 4,
     HTML('<p style="color: blue; font-weight: bold; font-size: 18px;">TENCENT</p>'),
-    br(),
     p("2 / 3"),
-    full_change_button
+    column(
+      12,
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">YID:</p>'),
+        paste0(listing$YSID[2]),
+      ),
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">PID:</p>'),
+        paste0(listing$平台ID[2]),
+      ),
+      column(3,full_change_button),
+      column(3,pid_change_button)
+    )
   ),
   box(
     width = 8,
-    tableOutput("second")
+    DTOutput("second")
   )
 ) -> success_box_2
 
@@ -44,13 +76,26 @@ box(
   box(
     width = 4,
     HTML('<p style="color: blue; font-weight: bold; font-size: 18px;">TENCENT</p>'),
-    br(),
     p("3 / 3"),
-    full_change_button
+    column(
+      12,
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">YID:</p>'),
+        paste0(listing$YSID[3]),
+      ),
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">PID:</p>'),
+        paste0(listing$平台ID[3]),
+      ),
+      column(3,full_change_button),
+      column(3,pid_change_button)
+    )
   ),
   box(
     width = 8,
-    tableOutput("third")
+    DTOutput("third")
   )
 ) -> success_box_3
 
@@ -59,13 +104,26 @@ box(
   box(
     width = 4,
     HTML('<p style="color: blue; font-weight: bold; font-size: 18px;">AUTONAVI</p>'),
-    br(),
     p("1 / 1"),
-    full_change_button
+    column(
+      12,
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">YID:</p>'),
+        paste0(listing$YSID[4]),
+      ),
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">PID:</p>'),
+        paste0(listing$平台ID[4]),
+      ),
+      column(3,full_change_button),
+      column(3,pid_change_button)
+    )
   ),
   box(
     width = 8,
-    tableOutput("fourth")
+    DTOutput("fourth")
   )
 ) -> success_box_4
 
@@ -74,13 +132,26 @@ box(
   box(
     width = 4,
     HTML('<p style="color: blue; font-weight: bold; font-size: 18px;">BAIDU</p>'),
-    br(),
     p("1 / 1"),
-    full_change_button
+    column(
+      12,
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">YID:</p>'),
+        paste0(listing$YSID[5]),
+      ),
+      column(
+        3,
+        HTML('<p style="color: black; font-weight: bold; font-size: 16px;">PID:</p>'),
+        paste0(listing$平台ID[5]),
+      ),
+      column(3,full_change_button),
+      column(3,pid_change_button)
+    )
   ),
   box(
     width = 8,
-    tableOutput("five")
+    DTOutput("five")
   )
 ) -> success_box_5
 

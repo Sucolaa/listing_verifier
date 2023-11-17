@@ -1,55 +1,35 @@
 library(shiny)
-library(tidyverse)
+library(DT)
 
 ui <- fluidPage(
-  tableOutput("first")
+  titlePanel("可编辑表格示例"),
+  DTOutput("table_output")
 )
 
 server <- function(input, output, session) {
-  listing %>% 
-    filter(Name == FALSE | Address == FALSE | Phone == FALSE) %>% 
-    mutate(平台 = toupper(平台)) -> listing
+  # 初始数据框
+  data <- data.frame(
+    ID = c(1, 2, 3),
+    Name = c("John", "Jane", "Jim"),
+    Age = c(25, 30, 22)
+  )
   
-  rbind(
-    c(listing$名称[1],listing$地址[1],listing$电话[1],listing$区[1],listing$市[1],listing$省[1]),
-    c(listing$平台名称[1],listing$平台地址[1],listing$平台电话[1],listing$平台区[1],listing$平台市[1],listing$平台省[1]),
-    c(listing$Name[1],listing$Address[1],listing$Phone[1],TRUE,TRUE,TRUE)
-  ) %>% 
-    as.data.frame() -> recheck_df
-  
-  colnames(recheck_df) <- c("名称对比","地址对比","电话对比","区对比","市对比","省对比")
-  
-  output$first <- renderTable({
-    recheck_df
+  # 渲染可编辑表格
+  output$table_output <- renderDT({
+    datatable(data, editable = TRUE, options = list(paging = FALSE, searching = FALSE, info = FALSE),rownames = FALSE)
   })
   
-  # output$first <- renderDT({
-  #   datatable(
-  #     recheck_df, 
-  #     editable = TRUE,
-  #     callback = JS(
-  #       'table.on("cellEdit", function (e, datatable, cell) {',
-  #       '  var col = cell.index().column;',
-  #       '  if (col === (datatable.columns().indexes().length - 1)) {',
-  #       '    var value = cell.data();',
-  #       '    if (value !== "TRUE" && value !== "FALSE") {',
-  #       '      var select = document.createElement("select");',
-  #       '      select.innerHTML = "<option value=\'TRUE\'>TRUE</option><option value=\'FALSE\'>FALSE</option>";',
-  #       '      cell.node().innerHTML = "";',
-  #       '      cell.node().appendChild(select);',
-  #       '      select.value = value;',
-  #       '      select.focus();',
-  #       '    }',
-  #       '  }',
-  #       '});'
-  #     )
-  #   )
-  # }, server = FALSE)
+  # 当用户编辑表格时，更新数据
+  observeEvent(input$table_output_cell_edit, {
+    info <- input$table_output_cell_edit
+    str(info)  # 输出编辑信息，你可以根据需要处理这些信息
+    
+    modified_data <- data
+    modified_data[info$row, info$col] <- info$value
+    
+    # 更新表格
+    replaceData(proxy = dataTableProxy("table_output"), data = modified_data, resetPaging = FALSE, rownames = FALSE)
+  })
 }
 
 shinyApp(ui, server)
-#> 
-#> Listening on http://127.0.0.1:6810
-
-
-

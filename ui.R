@@ -14,12 +14,14 @@ dashboardPage(
     sidebarMenu(
       mission_ask_menu,
       manual_check_menu
+      # baidu_menu
     )
   ),
   dashboardBody(
     tabItems(
       mission_ask_tab,
       manual_check_tab
+      # baidu_dashboard_tab
     )
   )
 )
