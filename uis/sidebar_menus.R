@@ -1,5 +1,5 @@
 menuItem(
-  text = strong("请求任务"),
+  text = strong("脚本运行"),
   tabName = "mission_ask",
   icon = icon("bars-staggered"),
   badgeLabel = "new", 

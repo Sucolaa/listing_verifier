@@ -73,13 +73,6 @@ function(input, output, session) {
     filter(Name == FALSE | Address == FALSE | Phone == FALSE) %>% 
     mutate(平台 = toupper(平台)) -> listing
   
-  # rbind(
-  #   c(listing$名称[1],listing$地址[1],listing$电话[1],listing$区[1],listing$市[1],listing$省[1]),
-  #   c(listing$平台名称[1],listing$平台地址[1],listing$平台电话[1],listing$平台区[1],listing$平台市[1],listing$平台省[1]),
-  #   c(listing$Name[1],listing$Address[1],listing$Phone[1],TRUE,TRUE,TRUE)
-  # ) %>% 
-  #   as.data.frame() -> recheck_df
-  
   the_recheck_df <- function(the_row){
     rbind(
       c(listing$名称[the_row],listing$地址[the_row],listing$电话[the_row],listing$区[the_row],listing$市[the_row],listing$省[the_row]),
@@ -131,4 +124,9 @@ function(input, output, session) {
       }
     }
   )
+  
+  observeEvent(input$recheck_load, {
+    # 在按钮点击事件中将按钮的值设置为0
+    updateActionButton(session, "recheck_load", label = "确认加载")
+  })
 }
